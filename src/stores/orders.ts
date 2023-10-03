@@ -8,7 +8,6 @@ export interface OrderState {
   date: string,
   status: string,
   comment: string
-
 }
 
 export interface OrderList {
@@ -20,7 +19,7 @@ export interface ReqParams {
   password: 'string';
 }
 
-export const useOrderState = defineStore({
+export const useOrdersState = defineStore({
   id: 'app-orders',
 
   state: (): OrderList => ({
