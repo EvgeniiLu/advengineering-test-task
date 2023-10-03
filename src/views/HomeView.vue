@@ -1,11 +1,10 @@
 <template>
   <main>
-    <TheWelcome />
+    1
   </main>
 </template>
 
 <script setup lang="ts">
-  import TheWelcome from '../components/TheWelcome.vue'
 </script>
 
 
