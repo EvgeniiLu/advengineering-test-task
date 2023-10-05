@@ -13,7 +13,6 @@ server.post('/login', (req, res) => {
     : res.send(JSON.stringify({success: false, error: 'Wrong username or password'}))
 })
 
-
 server.use(middlewares)
 server.use(jsonServer.bodyParser)
 server.use(router)
