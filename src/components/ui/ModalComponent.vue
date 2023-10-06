@@ -3,15 +3,15 @@
     <div class="modal-body">
       <h4>{{ question }}</h4>
       <div class="modal-action">
-        <button-comp @click="emit('confirm')">Принять</button-comp>
-        <button-comp @click="emit('cancel')">Отмена</button-comp>
+        <button-component @click="emit('confirm')">Принять</button-component>
+        <button-component @click="emit('cancel')">Отмена</button-component>
       </div>
     </div>
   </div>
 </template>
 
 <script setup>
-import {defineProps} from "vue";
+import {defineProps, defineEmits} from "vue";
 
 const props = defineProps({
   question: String

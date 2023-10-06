@@ -1,41 +1,39 @@
 <template>
   <div>
-    <card-comp elevation>
-      <title-comp text-start/>
-    </card-comp>
-    <text-field-comp label="label" placeholder="placeholder"/>
-    <button-comp elevation>Кнопка</button-comp>
+    <card-component elevation>
+      <title-component text-start/>
+    </card-component>
+    <text-field-component label="label" placeholder="placeholder"/>
+    <button-component elevation>Кнопка</button-component>
 
-    <table-comp :headers="headers" :items="items" elevation>
+    <table-component :headers="headers" :items="items" elevation>
       <template #actions="item">
         <div class="table_actions_slot">
-          <button-comp icon color="" @click="qwe(item)">
+          <button-component icon color="" @click="qwe(item)">
             <mdicon name="check-circle-outline"/>
-          </button-comp>
+          </button-component>
 
-          <button-comp icon color="" @click="showModal = true">
+          <button-component icon color="" @click="showModal = true">
             <mdicon name="close-circle-outline"/>
-          </button-comp>
+          </button-component>
         </div>
       </template>
-    </table-comp>
+    </table-component>
 
     <transition name="fade">
-      <modal-comp
+      <modal-component
         v-if="showModal"
         question="Вы действительно хотите удалить  заказ?"
         @cancel="showModal = false"
-      ></modal-comp>
+      ></modal-component>
     </transition>
   </div>
 </template>
 
 <script setup lang="ts">
-
-  import TableComp from "@/components/ui/TableComp.vue";
-  import ButtonComp from "@/components/ui/ButtonComp.vue";
-  import ModalComp from "@/components/ui/ModalComp.vue";
   import {ref} from 'vue'
+  import TitleComponent from "@/components/ui/TitleComponent.vue";
+  import TextFieldComponent from "@/components/ui/TextFieldComponent.vue";
 
   const headers = [
     { text: 'Логин', value: 'id' },

@@ -7,23 +7,23 @@ import * as mdijs from '@mdi/js'
 import App from './App.vue'
 import router from './router'
 
-import ButtonComp from './components/ui/ButtonComp.vue'
-import CardComp from './components/ui/CardComp.vue'
-import TextFieldComp from './components/ui/TextFieldComp.vue'
-import TitleComp from './components/ui/TitleComp.vue'
-import TabsComp from './components/ui/TabsComp.vue'
-import TableComp from './components/ui/TableComp.vue'
-import ModalComp from './components/ui/ModalComp.vue'
+import ButtonComponent from './components/ui/ButtonComponent.vue'
+import CardComponent from './components/ui/CardComponent.vue'
+import TextFieldComponent from './components/ui/TextFieldComponent.vue'
+import TitleComponent from './components/ui/TitleComponent.vue'
+import TabsComponent from './components/ui/TabsComponent.vue'
+import TableComponent from './components/ui/TableComponent.vue'
+import ModalComponent from './components/ui/ModalComponent.vue'
 
 const app = createApp(App)
 
-app.component('button-comp', ButtonComp)
-app.component('card-comp', CardComp)
-app.component('text-field-comp', TextFieldComp)
-app.component('title-comp', TitleComp)
-app.component('tabs-comp', TabsComp)
-app.component('table-comp', TableComp)
-app.component('modal-comp', ModalComp)
+app.component('button-component', ButtonComponent)
+app.component('card-component', CardComponent)
+app.component('text-field-component', TextFieldComponent)
+app.component('title-component', TitleComponent)
+app.component('tabs-component', TabsComponent)
+app.component('table-component', TableComponent)
+app.component('modal-component', ModalComponent)
 
 app.use(createPinia())
 app.use(router)

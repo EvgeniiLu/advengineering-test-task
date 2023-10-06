@@ -2,10 +2,10 @@
   <header class="header" :class="{ 'border_bottom': borderBottom }">
     <div class="container">
       <div class="header_inner">
-        <tabs-comp :items="items"/>
-        <button-comp @click="logout" elevation>
+        <tabs-component :items="items"/>
+        <button-component @click="logout" elevation>
           Выход
-        </button-comp>
+        </button-component>
       </div>
     </div>
   </header>
@@ -13,6 +13,8 @@
 
 <script setup lang="ts">
 import {defineProps} from "vue";
+import TabsComponent from "@/components/ui/TabsComponent.vue";
+import ButtonComponent from "@/components/ui/ButtonComponent.vue";
 
   defineProps({
     borderBottom: Boolean
