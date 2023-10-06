@@ -24,7 +24,7 @@
 </template>
 
 <script setup lang="ts">
-  import {computed, defineProps} from "vue";
+  import {computed, defineProps, defineEmits} from "vue";
 
   const props = defineProps({
     icon: Boolean,
