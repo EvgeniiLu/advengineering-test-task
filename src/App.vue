@@ -28,11 +28,11 @@ body {
 
 .fade-enter-active,
 .fade-leave-active {
-  transition: opacity .2s;
+  transition: opacity 0.2s ease;
 }
 
-.fade-enter,
+.fade-enter-from,
 .fade-leave-to {
-  opacity: 0
+  opacity: 0;
 }
 </style>

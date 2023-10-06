@@ -2,6 +2,10 @@
   <button
     class="button_comp"
     :style="computedButton"
+    :disabled="disabled"
+    :class="{
+      'elevation_button_comp': elevation
+    }"
     @click.stop="handleClick"
   >
     <transition
@@ -20,7 +24,7 @@
 </template>
 
 <script setup lang="ts">
-  import {computed} from "vue";
+  import {computed, defineProps} from "vue";
 
   const props = defineProps({
     icon: Boolean,
@@ -37,7 +41,9 @@
       type: [String, Number],
       default: 40
     },
-    loading: Boolean
+    loading: Boolean,
+    disabled: Boolean,
+    elevation: Boolean
   })
 
   const computedButton = computed(() => {
@@ -56,13 +62,10 @@
   })
 
   const emits = defineEmits(['click'])
+
   const handleClick = (e) => {
-    console.log(e)
     emits('click', e.target);
   }
-
-
-
 </script>
 
 <style scoped>
@@ -82,9 +85,16 @@
   opacity: .75;
 }
 
+.elevation_button_comp {
+  -webkit-box-shadow: 0px 5px 8px 0px rgba(34, 60, 80, 0.2);
+  -moz-box-shadow: 0px 5px 8px 0px rgba(34, 60, 80, 0.2);
+  box-shadow: 0px 5px 8px 0px rgba(34, 60, 80, 0.2);
+}
+
 .spinner_comp {
   animation: spinner 1s linear infinite;
 }
+
 
 @keyframes spinner {
   from {

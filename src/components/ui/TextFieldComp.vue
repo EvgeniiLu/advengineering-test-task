@@ -31,9 +31,10 @@
 
 <script setup lang="ts">
   import uniqid from 'uniqid';
-  import {ref, watch} from "vue";
+  import {ref, watch, defineProps} from "vue";
 
   const emits = defineEmits(['update:modelValue', 'input', 'blur'])
+
   const props = defineProps({
     type: {
       type: String,
@@ -44,8 +45,11 @@
     errorMessage: String,
     modelValue: String,
   })
+
   const inputId = uniqid()
+
   const textValue = ref('')
+
   watch(textValue, (e) => {
     emits('update:modelValue', e)
     emits('input', e)

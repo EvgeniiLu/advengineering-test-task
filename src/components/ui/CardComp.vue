@@ -2,7 +2,7 @@
   <div
     class="card_comp"
     :class="{
-      'elevation_comp': elevation
+      'elevation_card_comp': elevation
     }"
     :style="{
       backgroundColor: backgroundColor,
@@ -14,6 +14,8 @@
 </template>
 
 <script setup lang="ts">
+  import {defineProps} from "vue";
+
   const props = defineProps({
     backgroundColor: {
       type: String,
@@ -36,7 +38,7 @@
     width: 100%;
   }
 
-  .elevation_comp {
+  .elevation_card_comp {
     -webkit-box-shadow: 0px 5px 8px 0px rgba(34, 60, 80, 0.2);
     -moz-box-shadow: 0px 5px 8px 0px rgba(34, 60, 80, 0.2);
     box-shadow: 0px 5px 8px 0px rgba(34, 60, 80, 0.2);

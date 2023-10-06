@@ -1,6 +1,6 @@
 <template>
   <div :style="[navbarHeight]">
-    <Navbar/>
+    <Navbar border-bottom/>
     <AppMain class="main"/>
   </div>
 </template>
