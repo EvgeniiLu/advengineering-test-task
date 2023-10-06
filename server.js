@@ -9,8 +9,12 @@ server.post('/login', (req, res) => {
   const users = router.db.getState().users
 
   users.find(item => item.user === username && item.password === password)
-    ? res.send(JSON.stringify({success: true}))
-    : res.send(JSON.stringify({success: false, error: 'Wrong username or password'}))
+    ? res.send({success: true})
+    : res.send({success: false, error: 'Wrong username or password'})
+})
+
+server.post('/logout', (req, res) => {
+  res.send(JSON.stringify({success: true}))
 })
 
 server.use(middlewares)
