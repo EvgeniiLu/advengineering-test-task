@@ -2,7 +2,7 @@
   <main>
     <router-view v-slot="{ Component }">
       <transition
-        name="fade-transform"
+        name="fade"
         mode="out-in"
       >
         <component :is="Component" />
@@ -16,5 +16,4 @@
 </script>
 
 <style scoped>
-
 </style>

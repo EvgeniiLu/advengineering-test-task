@@ -95,14 +95,4 @@
     transform: rotate(360deg);
   }
 }
-
-.fade-enter-active,
-.fade-leave-active {
-  transition: opacity .1s linear;
-}
-
-.fade-enter,
-.fade-leave-to {
-  opacity: 0
-}
 </style>

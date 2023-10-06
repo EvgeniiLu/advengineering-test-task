@@ -85,14 +85,4 @@ input[type="text"] {
   padding: 0 15px;
   color: red;
 }
-
-.fade-enter-active,
-.fade-leave-active {
-  transition: opacity .2s;
-}
-
-.fade-enter,
-.fade-leave-to {
-  opacity: 0
-}
 </style>
