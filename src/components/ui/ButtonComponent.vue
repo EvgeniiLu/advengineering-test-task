@@ -8,10 +8,10 @@
     }"
     @click.stop="handleClick"
   >
-    <transition
-      name="fade"
-      mode="out-in"
-    >
+<!--    <transition-->
+<!--      name="fade"-->
+<!--      mode="out-in"-->
+<!--    >-->
       <div v-if="loading" class="spinner_comp">
         <mdicon name="loading"/>
       </div>
@@ -19,7 +19,7 @@
       <div v-else>
         <slot/>
       </div>
-    </transition>
+<!--    </transition>-->
   </button>
 </template>
 
