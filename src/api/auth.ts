@@ -1,9 +1,8 @@
+import { repository } from "@/api/base"
 
-import { repository } from "@/api/index"
-
-const authApi = {
+export default {
   async login(body) {
-    const {data} = await repository.post('/login', body)
+    const {data} = await repository.post(`/login?username=${body.username}&password=${body.password}`)
     return data
   },
 
@@ -11,5 +10,3 @@ const authApi = {
     return await repository.post('/logout')
   },
 }
-
-export default authApi

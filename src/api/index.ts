@@ -1,9 +1,2 @@
-
-import axios from 'axios'
-
-export const repository = axios.create({
-  baseURL: '/api',
-  withCredentials: true,
-  timeout: 10000,
-})
-
+export { default as authApi } from './auth'
+export { default as eventApi } from './event'

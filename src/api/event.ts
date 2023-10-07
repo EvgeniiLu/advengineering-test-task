@@ -1,7 +1,6 @@
+import { repository } from "@/api/base"
 
-import { repository } from "@/api/index"
-
-const ordersApi = {
+export default {
   async get() {
     const { data } = await repository.get('/events')
     return data
@@ -16,6 +15,10 @@ const ordersApi = {
     const {data} = await repository.put('/events', body)
     return data
   },
+
+  async remove(body) {
+    const {data} = await repository.delete('/events', body)
+    return data
+  },
 }
 
-export default ordersApi

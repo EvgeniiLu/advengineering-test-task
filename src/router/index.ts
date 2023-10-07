@@ -15,13 +15,13 @@ const router = createRouter({
           component: () => import('@/views/Login.vue'),
         },
         {
-          path: '/orders',
-          name: 'orders',
+          path: '/events',
+          name: 'events',
           component: () => import('@/views/Orders.vue'),
         },
         {
-          path: '/add-order',
-          name: 'addOrder',
+          path: '/add-event',
+          name: 'addEvent',
           component: () => import('@/views/OrderAdd.vue'),
         },
       ],
