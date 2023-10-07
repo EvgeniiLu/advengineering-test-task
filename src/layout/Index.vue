@@ -1,19 +1,25 @@
 <template>
   <div :style="[navbarHeight]">
-    <Navbar border-bottom/>
+    <Navbar elevation/>
     <AppMain class="main"/>
   </div>
 </template>
 
 <script setup lang="ts">
   import { Navbar, AppMain } from "./components/index"
+  import {useRouter} from 'vue-router'
+  import {useUserStore} from "@/stores/user";
   import {computed} from "vue";
 
+  const userStore = useUserStore()
   const navbarHeight = computed(()=> {
     return {
-      '--navbar-height': '80px'
+      '--navbar-height': userStore.user ? '80px' : '0px'
     }
   })
+
+  const router = useRouter()
+  if (!userStore.name) router.push('/')
 </script>
 
 <style scoped>
