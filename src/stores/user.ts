@@ -1,35 +1,50 @@
 import { defineStore } from 'pinia'
 import router from "@/router"
+import {authApi} from "@/api";
 
-export interface UserState {
+export interface ReqParams {
+  username: 'string';
+  password: 'string';
+}
+
+export interface User {
   user: string,
   password: string,
   name: string,
   role: string
 }
 
-export interface ReqParams {
-  user: 'string';
-  password: 'string';
-}
-
 export const useUserStore = defineStore({
   id: 'app-user',
 
-  state: (): UserState => ({
+  state: (): User => ({
     user: '',
     password: '',
     name: '',
     role: ''
   }),
 
+  getters: {
+    isAdmin: (): boolean => this.role === 'admin'
+  },
+
   actions: {
-    async login(params: ReqParams) {
-      return params
+    async login(body: ReqParams): Promise<User> {
+      try {
+        const data = await authApi.login(body)
+        if (data) {
+          this.user = data.user
+          this.password = data.password
+          this.name = data.name
+          this.role = data.role
+        }
+        return data
+      } catch (e) {
+        return Promise.reject(e)
+      }
     },
 
     async logout() {
-      this.$reset()
       await router.replace('/login')
     },
   }
