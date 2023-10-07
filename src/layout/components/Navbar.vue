@@ -1,27 +1,54 @@
 <template>
-  <header class="header" :class="{ 'border_bottom': borderBottom }">
+  <header
+    class="header"
+    :class="{
+      'navbar_border_bottom': borderBottom,
+      'navbar_elevation': elevation
+    }"
+  >
     <div class="container">
-      <div class="header_inner">
-        <tabs-component :items="items"/>
-        <button-component @click="logout" elevation>
-          Выход
-        </button-component>
+      <div class="header_inner" v-if="userStore.user">
+        <div class="header_tabs">
+          <tabs-component :items="items"/>
+        </div>
+        <div class="header_inner_wrapper">
+          <div class="header_username" v-html="userStore.name"/>
+
+          <button-component @click="logout" elevation :loading="loading">
+            Выход
+          </button-component>
+        </div>
       </div>
     </div>
   </header>
 </template>
 
 <script setup lang="ts">
-import {defineProps} from "vue";
-import TabsComponent from "@/components/ui/TabsComponent.vue";
-import ButtonComponent from "@/components/ui/ButtonComponent.vue";
+  import {defineProps, ref} from "vue"
+  import {useUserStore} from "@/stores/user"
+  import {useEventsStore} from "@/stores/events"
 
   defineProps({
-    borderBottom: Boolean
+    borderBottom: Boolean,
+    elevation: Boolean
   })
-  const items = [{ name: 'Все заказы', to: '/orders' }, { name: 'Добавить заказ', to: '/add-order' }]
-  const logout = () => {
 
+  const loading = ref(false)
+  const items = [{ name: 'Все заказы', to: '/events' }, { name: 'Добавить заказ', to: '/add-event' }]
+  const userStore = useUserStore()
+  const eventsStore = useEventsStore()
+
+  const logout = async () => {
+    try {
+      loading.value = true
+      await userStore.logout()
+      userStore.$reset()
+      eventsStore.$reset()
+    } catch (e) {
+      console.log(e)
+    } finally {
+      loading.value = false
+    }
   }
 
 </script>
@@ -36,6 +63,16 @@ import ButtonComponent from "@/components/ui/ButtonComponent.vue";
   left: 0;
 }
 
+.navbar_border_bottom {
+  border-bottom: 1px solid #b0b0b0;
+}
+
+.navbar_elevation {
+  -webkit-box-shadow: 0px 5px 8px 0px rgba(34, 60, 80, 0.2);
+  -moz-box-shadow: 0px 5px 8px 0px rgba(34, 60, 80, 0.2);
+  box-shadow: 0px 5px 8px 0px rgba(34, 60, 80, 0.2);
+}
+
 .header_inner {
   display: flex;
   height: var(--navbar-height);
@@ -44,7 +81,12 @@ import ButtonComponent from "@/components/ui/ButtonComponent.vue";
   align-items: center;
 }
 
-.border_bottom {
-  border-bottom: 1px solid #b0b0b0;
+.header_inner_wrapper {
+  display: flex;
+  align-items: center;
+}
+
+.header_username {
+  margin: 0 25px;
 }
 </style>
