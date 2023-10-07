@@ -56,12 +56,12 @@
 .tab_link_comp {
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: start;
   font-weight: 600;
   text-decoration: none;
   color: inherit;
   opacity: 1;
-  min-width: 150px;
+  min-width: 100px;
   padding: 10px 15px;
   cursor: pointer;
   transition: all 0.1s linear;
@@ -79,6 +79,11 @@
 @media (max-width: 500px) {
   .tab_comp {
     flex-direction: column;
+    font-size: 10px;
+  }
+
+  .tab_link_comp {
+    padding: 5px 10px;
   }
 }
 </style>

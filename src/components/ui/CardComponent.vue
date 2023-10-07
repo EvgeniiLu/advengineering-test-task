@@ -14,7 +14,7 @@
 </template>
 
 <script setup lang="ts">
-  import {defineProps} from "vue";
+  import {defineProps, useSlots} from "vue";
 
   const props = defineProps({
     backgroundColor: {
@@ -27,20 +27,20 @@
     },
     padding: {
       type: [String, Number],
-      default: 15
+      default: 0
     },
     elevation: Boolean
   })
 </script>
 
 <style scoped>
-  .card_comp {
-    width: 100%;
-  }
+.card_comp {
+  width: 100%;
+}
 
-  .elevation_card_comp {
-    -webkit-box-shadow: 0px 5px 8px 0px rgba(34, 60, 80, 0.2);
-    -moz-box-shadow: 0px 5px 8px 0px rgba(34, 60, 80, 0.2);
-    box-shadow: 0px 5px 8px 0px rgba(34, 60, 80, 0.2);
-  }
+.elevation_card_comp {
+  -webkit-box-shadow: 0px 5px 8px 0px rgba(34, 60, 80, 0.2);
+  -moz-box-shadow: 0px 5px 8px 0px rgba(34, 60, 80, 0.2);
+  box-shadow: 0px 5px 8px 0px rgba(34, 60, 80, 0.2);
+}
 </style>

@@ -7,10 +7,13 @@ server.post('/login', (req, res) => {
   const username = req.query.username
   const password = req.query.password
   const users = router.db.getState().users
+  const user = users.find(item => item.user === username && item.password === password)
 
-  users.find(item => item.user === username && item.password === password)
-    ? res.send({success: true})
-    : res.send({success: false, error: 'Wrong username or password'})
+  if (user) {
+    res.send(user)
+  } else {
+    res.sendStatus(422)
+  }
 })
 
 server.post('/logout', (req, res) => {

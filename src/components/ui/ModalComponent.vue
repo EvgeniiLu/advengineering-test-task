@@ -1,16 +1,16 @@
 <template>
-  <div class="modal-container">
-    <div class="modal-body">
+  <div class="modal_container">
+    <div class="modal_body">
       <h4>{{ question }}</h4>
-      <div class="modal-action">
-        <button-component @click="emit('confirm')">Принять</button-component>
-        <button-component @click="emit('cancel')">Отмена</button-component>
+      <div class="modal_action">
+        <button-component elevation @click="emit('confirm')">Принять</button-component>
+        <button-component elevation @click="emit('cancel')">Отмена</button-component>
       </div>
     </div>
   </div>
 </template>
 
-<script setup>
+<script setup lang="ts">
 import {defineProps, defineEmits} from "vue";
 
 const props = defineProps({
@@ -20,7 +20,7 @@ const emit = defineEmits(['confirm', 'cancel'])
 </script>
 
 <style>
-.modal-container {
+.modal_container {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -32,7 +32,7 @@ const emit = defineEmits(['confirm', 'cancel'])
   height: 100%;
   background-color: rgba(134, 134, 134, 0.71);
 }
-.modal-body {
+.modal_body {
   background-color: #fff;
   border-radius: 10px;
   text-align: center;
@@ -41,7 +41,7 @@ const emit = defineEmits(['confirm', 'cancel'])
   display: flex;
   flex-direction: column;
 }
-.modal-action {
+.modal_action {
   display: flex;
   flex-direction: row;
   gap: 40px;
