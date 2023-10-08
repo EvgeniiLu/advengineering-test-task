@@ -10,7 +10,7 @@
         <div class="table_actions_slot">
           <button-component
             icon
-            color="#c2c1c1"
+            color="#E3F2FD"
             :disabled="item.status === 'Выполнен'"
             :loading="state.selectedItem?.id === item?.id && state.doneLoading"
             @click="setStatusDone(item)"
@@ -20,7 +20,7 @@
 
           <button-component
             icon
-            color="#c2c1c1"
+            color="#E3F2FD"
             @click="openModal(item)"
           >
             <mdicon name="close-circle-outline"/>
