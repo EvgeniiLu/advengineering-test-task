@@ -38,13 +38,12 @@
       type: Array,
       default: () => []
     },
-
     items: {
       type: Array,
       default: () => []
     },
-
-    elevation: Boolean
+    elevation: Boolean,
+    loading: Boolean
   })
 
   const slots = useSlots()
@@ -67,9 +66,11 @@
 </script>
 
 <style scoped>
+
 .table_comp {
   width: 100%;
   border: none;
+  border-radius: 8px
 }
 .table_comp thead th {
   font-weight: bold;
