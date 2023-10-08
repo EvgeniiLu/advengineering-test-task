@@ -17,12 +17,16 @@
           v-model="form.username"
           label="Имя пользователя"
           placeholder="Введите имя"
+          @input="v$.username.$touch()"
+          :error-message="v$.username.$errors"
         />
         <text-field-component
           v-model="form.password"
           label="Пароль"
           placeholder="Введите пароль"
           type="password"
+          @input="v$.password.$touch()"
+          :error-message="v$.password.$errors"
         />
       </div>
 
@@ -40,23 +44,30 @@
 </template>
 
 <script setup lang="ts">
-  import {reactive, ref} from 'vue'
+  import {ref} from 'vue'
   import {useRouter} from 'vue-router'
-  import {useUserStore} from "@/stores/user";
+  import {useUserStore} from "@/stores/user"
+  import {useVuelidate} from '@vuelidate/core'
+  import {loginRules} from "@/validation"
 
   const userStore = useUserStore()
   const router = useRouter()
 
-  const form = reactive({
+  const form = ref({
     username: '',
     password: ''
   })
   let loading = ref(false)
 
+  const v$ = useVuelidate(loginRules, form.value)
+
   const login = async () => {
+    const result = await v$.value.$validate()
+    if (!result) return
+
     try {
       loading.value = true
-      const data = await userStore.login(form)
+      const data = await userStore.login(form.value)
       if (data.user) await router.push({name: 'events'})
     } catch (e) {
       console.log(e)

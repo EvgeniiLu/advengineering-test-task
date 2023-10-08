@@ -23,7 +23,7 @@
           name="fade"
           mode="out-in"
         >
-          <span v-if="errorMessage">{{errorMessage}}</span>
+          <span v-if="message">{{message}}</span>
         </transition>
       </div>
   </div>
@@ -31,7 +31,7 @@
 
 <script setup lang="ts">
   import uniqid from 'uniqid';
-  import {ref, watch, defineProps, defineEmits} from "vue";
+  import {defineProps, defineEmits, computed} from "vue";
 
   const emits = defineEmits(['update:modelValue', 'input', 'blur'])
 
@@ -42,11 +42,18 @@
     },
     placeholder: String,
     label: String,
-    errorMessage: String,
+    errorMessage: {
+      type: Array,
+      default: () => []
+    },
     modelValue: String,
   })
 
   const inputId = uniqid()
+
+  const message = computed(() => {
+    return props.errorMessage.length ? props.errorMessage[0].$message : ''
+  })
 
   const setModelValue = (e) => {
     emits('update:modelValue', e)

@@ -12,26 +12,32 @@
 
         <div class="event_content">
           <text-field-component
-            v-model="state.event.name"
+            v-model="event.name"
             label="Имя пользователя"
             placeholder="Введите имя"
+            @input="v$.name.$touch()"
+            :error-message="v$.name.$errors"
           />
           <text-field-component
-            v-model="state.event.address"
+            v-model="event.address"
             label="Адрес"
             placeholder="Введите адрес"
+            @input="v$.address.$touch()"
+            :error-message="v$.address.$errors"
           />
           <text-field-component
-            v-model="state.event.comment"
+            v-model="event.comment"
             label="Комментарий"
             placeholder="Введите комментарий"
+            @input="v$.comment.$touch()"
+            :error-message="v$.comment.$errors"
           />
         </div>
 
         <div class="event_actions">
           <button-component
             elevation
-            :loading="state.loading"
+            :loading="loading"
             @click="addEvent"
           >
             Добавить заказ
@@ -44,47 +50,52 @@
 
 <script setup lang="ts">
   import {useEventsStore} from "@/stores/events"
-  import {onActivated, reactive} from "vue";
+  import {ref} from "vue";
+  import {useVuelidate} from '@vuelidate/core'
+  import {eventRules} from "@/validation"
 
   const eventsStore = useEventsStore()
 
-  const state = reactive({
-    event: {
+  const event = ref({
       name: '',
       address: '',
       date: '',
       status: '',
       comment: ''
-    },
-    loading: false
   })
+  const loading = ref(false)
+
+  const v$ = useVuelidate(eventRules, event.value)
 
   const addEvent = async () => {
+    const result = await v$.value.$validate()
+    if (!result) return
+
     try {
-      state.loading = true
+      loading.value = true
       setProperties()
-      const data = await eventsStore.addEvent(state.event)
+      const data = await eventsStore.addEvent(event.value)
       resetEventState()
     } catch (e) {
       console.log(e)
     } finally {
-      state.loading = false
+      loading.value = false
     }
   }
 
   const setProperties = () => {
-    state.event.status = 'Новый'
-    state.event.date = formatDate().replace(' г.', '')
+    event.value.status = 'Новый'
+    event.value.date = formatDate()
   }
 
   const formatDate = () => {
     const date = new Date()
-    const options = { day: '2-digit', month: 'long', year: 'numeric' }
-    return date.toLocaleDateString('ru-RU', options)
+    const str = date.toLocaleDateString('ru-RU', {day: '2-digit', month: 'long', year: 'numeric'})
+    return str.replace(' г.', '')
   }
 
   const resetEventState = () => {
-    state.event = {
+    event.value = {
       name: '',
       address: '',
       date: '',
