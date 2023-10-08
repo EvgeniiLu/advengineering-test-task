@@ -3,7 +3,13 @@
     <div class="modal_body">
       <h4>{{ question }}</h4>
       <div class="modal_action">
-        <button-component elevation @click="emit('confirm')">Принять</button-component>
+        <button-component
+          elevation
+          :loading="loading"
+          @click="emit('confirm')"
+        >
+          Принять
+        </button-component>
         <button-component elevation @click="emit('cancel')">Отмена</button-component>
       </div>
     </div>
@@ -14,7 +20,8 @@
 import {defineProps, defineEmits} from "vue";
 
 const props = defineProps({
-  question: String
+  question: String,
+  loading: Boolean
 })
 const emit = defineEmits(['confirm', 'cancel'])
 </script>
