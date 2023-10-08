@@ -13,8 +13,8 @@
       :id="inputId"
       :type="type"
       :placeholder="placeholder"
-      :value="textValue"
-      @input="textValue = $event.target.value"
+      :value="modelValue"
+      @input="setModelValue($event.target.value)"
       @blur="emits('blur', $event.target.value)"
     >
 
@@ -48,12 +48,10 @@
 
   const inputId = uniqid()
 
-  const textValue = ref('')
-
-  watch(textValue, (e) => {
+  const setModelValue = (e) => {
     emits('update:modelValue', e)
     emits('input', e)
-  })
+  }
 </script>
 
 <style scoped>
