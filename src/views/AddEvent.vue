@@ -74,7 +74,13 @@
 
   const setProperties = () => {
     state.event.status = 'Новый'
-    state.event.date = new Date(Date.now()).toLocaleString().split(',')[0]
+    state.event.date = formatDate().replace(' г.', '')
+  }
+
+  const formatDate = () => {
+    const date = new Date()
+    const options = { day: '2-digit', month: 'long', year: 'numeric' }
+    return date.toLocaleDateString('ru-RU', options)
   }
 
   const resetEventState = () => {
