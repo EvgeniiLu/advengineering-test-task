@@ -12,12 +12,12 @@ export default {
   },
 
   async put(body) {
-    const {data} = await repository.put('/events', body)
+    const {data} = await repository.put(`/events/${body.id}`, body)
     return data
   },
 
   async remove(body) {
-    const {data} = await repository.delete('/events', body)
+    const {data} = await repository.delete(`/events/${body.id}`, body)
     return data
   },
 }

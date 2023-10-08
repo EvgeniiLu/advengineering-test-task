@@ -24,7 +24,9 @@ export const useEventsStore = defineStore({
   actions: {
     async getEvents(): Promise<Events> {
       try {
-        return await eventApi.get()
+        const data = await eventApi.get()
+        this.list = data
+        return data
       } catch (e) {
         console.log(e)
       }
@@ -54,7 +56,7 @@ export const useEventsStore = defineStore({
     async removeEvent(event: Event): void {
       try {
         const data = await eventApi.remove(event)
-        const index = this.list.findIndex(el => el.id === data.id)
+        const index = this.list.findIndex(el => el.id === event.id)
         index >=0 && this.list.splice(index, 1)
       } catch (e) {
         console.log(e)
