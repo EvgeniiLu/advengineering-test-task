@@ -31,6 +31,7 @@ npm install
 
 ```sh
 npm run dev
+npm run db:serve
 ```
 
 ### Type-Check, Compile and Minify for Production
