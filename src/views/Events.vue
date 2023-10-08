@@ -1,5 +1,5 @@
 <template>
-  <div class="table_page">
+  <div class="table">
 
     <table-component
       :headers="computedHeaders"
@@ -130,7 +130,7 @@
 </script>
 
 <style>
-.table_page {
+.table {
   padding-top: 25px;
 }
 
