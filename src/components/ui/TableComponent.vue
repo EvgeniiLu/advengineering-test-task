@@ -77,7 +77,8 @@
   text-align: left;
   border: none;
   padding: 10px 15px;
-  background: #d8d8d8;
+  background: #E3F2FD;
+  color: #212529;
   font-size: 14px;
 }
 .table_comp thead tr th:first-child {
