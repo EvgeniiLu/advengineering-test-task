@@ -25,7 +25,9 @@ export const useUserStore = defineStore({
   }),
 
   getters: {
-    isAdmin: (): boolean => this.role === 'admin'
+    isAdmin: (state): boolean => {
+      return state.role === 'ADMIN'
+    }
   },
 
   actions: {
