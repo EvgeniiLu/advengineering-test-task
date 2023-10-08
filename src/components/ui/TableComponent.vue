@@ -56,11 +56,13 @@
   const toArr = (str) => str.split('.').reverse()
 
   const valueStringParser = (obj, arr) => {
-    if (arr.length < 2) {
-      return obj[arr[0]]
+    if (obj.hasOwnProperty(`${[arr[arr.length - 1]]}`)) {
+      if (arr.length < 2) {
+        return obj[arr[0]]
+      }
+      const firstEl = arr.shift()
+      return valueStringParser(obj, arr)[`${firstEl}`]
     }
-    const firstEl = arr.shift()
-    return valueStringParser(obj, arr)[`${firstEl}`]
   }
 </script>
 
