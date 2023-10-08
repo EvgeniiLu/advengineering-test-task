@@ -1,6 +1,6 @@
 <template>
   <div class="modal_container">
-    <div class="modal_body">
+    <card-component class="modal_body" elevation padding="30">
       <h4>{{ question }}</h4>
       <div class="modal_action">
         <button-component
@@ -12,7 +12,7 @@
         </button-component>
         <button-component elevation @click="emit('cancel')">Отмена</button-component>
       </div>
-    </div>
+    </card-component>
   </div>
 </template>
 
@@ -40,15 +40,16 @@ const emit = defineEmits(['confirm', 'cancel'])
   background-color: rgba(134, 134, 134, 0.71);
 }
 .modal_body {
-  background-color: #fff;
-  border-radius: 10px;
+  margin: 0 10px;
   text-align: center;
   padding: 20px 40px;
   min-width: 250px;
+  max-width: 400px;
   display: flex;
   flex-direction: column;
 }
 .modal_action {
+  margin-top: 15px;
   display: flex;
   flex-direction: row;
   gap: 40px;
