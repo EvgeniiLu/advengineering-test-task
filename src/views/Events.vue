@@ -20,13 +20,18 @@
 
           <button-component
             icon
-            :loading="true"
             color="#c2c1c1"
             @click="openModal(item)"
           >
             <mdicon name="close-circle-outline"/>
           </button-component>
         </div>
+      </template>
+
+      <template #status="item">
+        <span :class="{'status_completed': item.status === 'Выполнен'}">
+          {{item.status}}
+        </span>
       </template>
     </table-component>
 
@@ -132,6 +137,11 @@
 .table_actions_slot {
   display: flex;
   justify-content: space-around;
+}
+
+.status_completed {
+  color: black;
+  font-weight: 800;
 }
 </style>
 
