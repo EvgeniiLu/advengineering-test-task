@@ -22,7 +22,7 @@ const router = createRouter({
         {
           path: '/add-event',
           name: 'addEvent',
-          component: () => import('@/views/AddEvent.vue'),
+          component: () => import('@/views/EventCreate.vue'),
         },
       ],
     },
