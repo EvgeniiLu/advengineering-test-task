@@ -1,7 +1,7 @@
 <template>
   <transition name="fade" mode="out-in">
     <card-component
-      v-if="state.showNotification"
+      v-show="state.showNotification"
       class="notification_comp"
       padding="15"
       elevation
