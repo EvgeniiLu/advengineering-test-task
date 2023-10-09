@@ -45,6 +45,8 @@
         </div>
       </card-component>
     </div>
+
+    <notification-component ref="notification"/>
   </div>
 </template>
 
@@ -69,6 +71,8 @@
 
   const v$ = useVuelidate(eventRules, event)
 
+  const notification = ref(null)
+
   const addEvent = async () => {
     const result = await v$.value.$validate()
     if (!result) return
@@ -78,6 +82,7 @@
       setProperties()
       const data = await eventsStore.addEvent(event.value)
       resetEventState()
+      notification.value?.show('Успех!', 'Заказ успешно добавлен')
     } catch (e) {
       console.log(e)
     } finally {
