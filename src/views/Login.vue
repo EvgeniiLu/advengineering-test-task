@@ -40,6 +40,8 @@
         </button-component>
       </div>
     </card-component>
+
+    <notification-component ref="notification"/>
   </div>
 </template>
 
@@ -49,6 +51,7 @@
   import {useUserStore} from "@/stores/user"
   import {useVuelidate} from '@vuelidate/core'
   import {loginRules} from "@/validation"
+  import NotificationComponent from "@/components/ui/NotificationComponent.vue";
 
   const userStore = useUserStore()
   const router = useRouter()
@@ -60,6 +63,7 @@
   let loading = ref(false)
 
   const v$ = useVuelidate(loginRules, form)
+  const notification = ref<InstanceType<typeof NotificationComponent> | null>(null)
 
   const login = async () => {
     const result = await v$.value.$validate()
@@ -71,11 +75,11 @@
       if (data.user) await router.push({name: 'events'})
     } catch (e) {
       console.log(e)
+      notification.value?.show('Ошибка!', 'Неверный логин\\пароль', 'error')
     } finally {
       loading.value = false
     }
   }
-
 </script>
 
 <style scoped>
