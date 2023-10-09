@@ -125,6 +125,7 @@
 
 .event {
   padding-top: 25px;
+  margin: 0 10px;
   display: flex;
   justify-content: center;
 }

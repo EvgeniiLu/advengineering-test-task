@@ -28,10 +28,10 @@ const emit = defineEmits(['confirm', 'cancel'])
 
 <style>
 .modal_container {
+  position: fixed;
   display: flex;
   justify-content: center;
   align-items: center;
-  position: absolute;
   top: 0;
   left: 0;
   right: 0;

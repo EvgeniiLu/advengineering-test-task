@@ -131,6 +131,7 @@
 
 <style>
 .table {
+  margin: 0 10px;
   padding-top: 25px;
 }
 
