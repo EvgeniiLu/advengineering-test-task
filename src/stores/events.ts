@@ -15,7 +15,7 @@ export interface Events {
 }
 
 export const useEventsStore = defineStore({
-  id: 'app-orders',
+  id: 'app-events',
 
   state: (): Events => ({
     list: []
