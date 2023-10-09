@@ -50,11 +50,13 @@
 
 <script setup lang="ts">
   import {useEventsStore} from "@/stores/events"
-  import {ref} from "vue";
+  import {useUserStore} from "@/stores/user"
+  import {ref, onActivated, onDeactivated} from "vue";
   import {useVuelidate} from '@vuelidate/core'
   import {eventRules} from "@/validation"
 
   const eventsStore = useEventsStore()
+  const userStore = useUserStore()
 
   const event = ref({
       name: '',
@@ -65,7 +67,7 @@
   })
   const loading = ref(false)
 
-  const v$ = useVuelidate(eventRules, event.value)
+  const v$ = useVuelidate(eventRules, event)
 
   const addEvent = async () => {
     const result = await v$.value.$validate()
@@ -95,6 +97,7 @@
   }
 
   const resetEventState = () => {
+    v$.value.$reset()
     event.value = {
       name: '',
       address: '',
@@ -103,6 +106,14 @@
       comment: ''
     }
   }
+
+  onActivated(() => {
+    if (userStore.name) event.value.name = userStore.name
+  })
+
+  onDeactivated(() => {
+    resetEventState()
+  })
 </script>
 
 <style scoped>

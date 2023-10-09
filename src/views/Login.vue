@@ -59,7 +59,7 @@
   })
   let loading = ref(false)
 
-  const v$ = useVuelidate(loginRules, form.value)
+  const v$ = useVuelidate(loginRules, form)
 
   const login = async () => {
     const result = await v$.value.$validate()
