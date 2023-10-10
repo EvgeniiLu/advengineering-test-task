@@ -94,14 +94,12 @@
 
   const setStatusDone = async (item) => {
     try {
-      state.selectedItem = item
       state.doneLoading = true
       item.status = 'Выполнен'
       await eventsStore.updateEvent(item)
     } catch (e) {
       console.log(e)
     } finally {
-      state.selectedItem = null
       state.doneLoading = false
     }
   }
