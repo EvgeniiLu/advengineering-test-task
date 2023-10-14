@@ -1,17 +1,18 @@
 import { repository } from "@/api/base"
+import type {Events, Event} from "@/stores/events";
 
 export default {
-  async get() {
+  async get(): Events {
     const { data } = await repository.get('/events')
     return data
   },
 
-  async post(body) {
+  async post(body: Event): Event {
     const {data} = await repository.post('/events', body)
     return data
   },
 
-  async put(body) {
+  async put(body: Event): Event {
     const {data} = await repository.put(`/events/${body.id}`, body)
     return data
   },

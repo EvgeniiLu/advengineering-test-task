@@ -32,7 +32,7 @@ export const useEventsStore = defineStore({
       }
     },
 
-    async addEvent(event: Event): Promise<Events> {
+    async addEvent(event: Event): Promise<Event> {
       try {
         const data = await eventApi.post(event)
         this.list.push(data)
@@ -42,7 +42,7 @@ export const useEventsStore = defineStore({
       }
     },
 
-    async updateEvent(event: Event): Promise<Events> {
+    async updateEvent(event: Event): Promise<Event> {
       try {
         const data = await eventApi.put(event)
         const index = this.list.findIndex(el => el.id === data.id)

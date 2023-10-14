@@ -1,7 +1,8 @@
 import { repository } from "@/api/base"
+import type {ReqParams, User} from "@/stores/user";
 
 export default {
-  async login(body) {
+  async login(body: ReqParams): User {
     const {data} = await repository.post(`/login`, body)
     return data
   },
